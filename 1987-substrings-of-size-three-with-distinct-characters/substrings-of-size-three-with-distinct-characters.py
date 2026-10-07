@@ -1,17 +1,41 @@
 class Solution:
     def countGoodSubstrings(self, s: str) -> int:
-
+      
         n = len(s)
-        ans = ""
+        dici = {}
+        l=0
         k = 3
-        count = 0
-        for i in range(n-k+1):
-              temp = []
-              for j in range(i,n):
-                    temp.append(s[j])
-                    if len(temp)==k :
-                          if len(set(temp))==k:
-                                count+=1
-        return count
+        ans = 0
+        for r in range(n):
+          if s[r] in dici :
+            dici[s[r]]+=1
+          else:
+            dici[s[r]]= 1
+
+
+          if r-l == k:
+            dici[s[l]]-=1
+            if dici[s[l]]==0:
+              dici.pop(s[l])
+            l+=1
+
+
+
+          if len(dici) == k:
+            ans+=1
+        return ans
+
+    
+      
+    
+
+
+
+      
+      
+                        
             
+            
+
+        
         
